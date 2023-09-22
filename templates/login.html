@@ -1,0 +1,46 @@
+{{ define "content" }}
+
+<div class="top-spacer"></div>
+
+<div class="columns is-centered ">
+    <form class="column is-3 box p-6" method="post" action="/authenticate">
+        <h1 class="is-size-2 has-text-weight-semibold mb-4"><a href="/">Chatter</a></h1>
+        <div class="field">
+            <label class="label">Email</label>
+            <div class="control has-icons-left">
+                <input class="input" type="email" placeholder="harry@abc" name="email" required>
+                <span class="icon is-small is-left">
+                    <img src="/static/feather/mail.svg" alt="user-icon">
+                </span>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Password</label>
+            <div class="control has-icons-left">
+                <input class="input" type="password" placeholder="someStRoNgPaSSwoRd_5267" name="password" required>
+                <span class="icon is-small is-left">
+                    <img src="/static/feather/lock.svg" alt="user-icon">
+                </span>
+            </div>
+        </div>
+
+        <div class="field is-grouped mt-5">
+            <div class="control">
+                <input type="submit" class="button is-link" value="Sign in">
+            </div>
+        </div>
+        <a href="/signup">New to Chatter?</a>
+    </form>
+
+</div>
+<div class="has-text-centered mt-6">
+    <a class="mx-2" href="#">Terms</a>
+    <a class="mx-2" href="#">Privacy</a>
+    <a class="mx-2" href="#">Docs</a>
+    <a class="mx-2" href="#">Contact</a>
+</div>
+
+
+
+{{ end }}

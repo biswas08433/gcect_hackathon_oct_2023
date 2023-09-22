@@ -1,0 +1,63 @@
+{{ define "content" }}
+
+<div class="top-spacer"></div>
+
+<div class="columns is-centered ">
+    <form class="column is-3 box p-6" method="post" action="/signup-account">
+        <h1 class="is-size-2 has-text-weight-semibold mb-4"><a href="/">Chatter</a></h1>
+        <div class="field">
+            <label class="label">Name</label>
+            <div class="control has-icons-left">
+                <input class="input" type="text" placeholder="Harry Potter" name="name" required>
+                <span class="icon is-small is-left">
+                    <img src="/static/feather/user.svg" alt="user-icon">
+                </span>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Email</label>
+            <div class="control has-icons-left">
+                <input class="input" type="email" placeholder="harry@abc" name="email" required>
+                <span class="icon is-small is-left">
+                    <img src="/static/feather/mail.svg" alt="user-icon">
+                </span>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Password</label>
+            <div class="control has-icons-left">
+                <input id="password" class="input" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    placeholder="someStRoNgPaSSwoRd_5267" name="password" required>
+                <span class="icon is-small is-left">
+                    <img src="/static/feather/lock.svg" alt="user-icon">
+                </span>
+            </div>
+        </div>
+        <div id="message" class="block">
+            <h3>Password must contain the following:</h3>
+            <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+            <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+            <p id="number" class="invalid">A <b>number</b></p>
+            <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+        </div>
+        <div class="field is-grouped mt-5">
+            <div class="control">
+                <input type="submit" class="button is-link" value="Sign up">
+            </div>
+        </div>
+        <a href="/login">Already have an account?</a>
+    </form>
+
+</div>
+<div class="has-text-centered mt-6">
+    <a class="mx-2" href="#">Terms</a>
+    <a class="mx-2" href="#">Privacy</a>
+    <a class="mx-2" href="#">Docs</a>
+    <a class="mx-2" href="#">Contact</a>
+</div>
+
+
+
+{{ end }}

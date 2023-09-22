@@ -1,0 +1,15 @@
+{
+    "buildSystem": "go",
+    "buildArgs": [
+        "build",
+        "."
+    ],
+    "executable": "./chatter",
+    "args": [
+        ""
+    ],
+    "folders": [
+        "./public",
+        "./templates"
+    ]
+}

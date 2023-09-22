@@ -1,0 +1,29 @@
+{{ define "layout" }}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- HEAD -->
+
+<head>
+    {{ template "common-head" . }}
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<!-- END HEAD -->
+
+
+
+<!-- BODY -->
+
+<body>
+    {{ template "navbar" . }}
+    {{ template "content" . }}
+    {{ template "common-scripts" . }}
+    <script src="/static/index.js"></script>
+</body>
+
+<!-- END BODY -->
+
+</html>
+
+{{ end }}

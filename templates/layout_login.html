@@ -1,0 +1,27 @@
+{{ define "layout" }}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- HEAD -->
+
+<head>
+    {{ template "common-head" . }}
+</head>
+<!-- END HEAD -->
+
+
+
+<!-- BODY -->
+
+<body>
+    {{ template "content" . }}
+    {{ template "common-scripts" . }}
+    <script src="/static/password_validation.js"></script>
+</body>
+
+<!-- END BODY -->
+
+</html>
+
+{{ end }}

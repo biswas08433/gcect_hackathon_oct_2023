@@ -1,0 +1,50 @@
+{{ define "content" }}
+
+<div class="container">
+    <div class="panel">
+        <div class="panel-heading">
+            <span>{{ .Topic }}</span>
+            <div class="is-pulled-right">
+                Started by {{ .User.Name }} - {{ .CreatedAtDate }}
+            </div>
+
+        </div>
+
+        {{ range .Posts }}
+
+        <div class="panel-block">
+            <div>{{ .Body }}</div>
+            <div class="is-pulled-right">
+                {{ .User.Name }} - {{ .CreatedAtDate }}
+            </div>
+        </div>
+
+        {{ end }}
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="panel is-info">
+        <div class="panel-block">
+            <form action="/thread/create-post" method="post">
+                <div class="field is-grouped">
+                    <div class="control">
+                        <textarea class="form-control" name="body" id="body" placeholder="Write your reply here"
+                            rows="3"></textarea>
+                        <input type="hidden" name="uuid" value="{{ .Uuid }}">
+                    </div>
+                    <br />
+                    <div class="control">
+                        <input class="button is-link is-pulled-right" type="submit" value="Reply">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+{{ end }}

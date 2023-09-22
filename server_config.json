@@ -1,0 +1,7 @@
+{
+    "Address": "0.0.0.0:6505",
+    "ReadTimeout": 10,
+    "WriteTimeout": 600,
+    "Static": "./public",
+    "Version": "0.1.0"
+}
