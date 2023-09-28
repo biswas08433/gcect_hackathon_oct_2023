@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/biswas08433/chatter/data"
+	"github.com/biswas08433/teachwise/data"
 )
 
 type Configuration struct {

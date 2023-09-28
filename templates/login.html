@@ -1,14 +1,8 @@
 {{ define "content" }}
 <section class="columns is-centered is-vcentered is-flex" id="login-page">
-    <div
-        class="is-flex is-flex-direction-column cloumns column is-4 block box is-centered is-vcentered"
-        id="login"
-        style="padding: 30px; margin: auto"
-    >
-        <div
-            class="column columns is-desktop is-flex is-flex-direction-column"
-            style="margin: 0"
-        >
+    <div class="is-flex is-flex-direction-column cloumns column is-4 block box is-centered is-vcentered" id="login"
+        style="padding: 30px; margin: auto">
+        <div class="column columns is-desktop is-flex is-flex-direction-column" style="margin: 0">
             <h1 class="column is-full is-size-3 has-text-centered p-0 m-1">
                 Logo
             </h1>
@@ -16,30 +10,17 @@
                 Sign in to your account
             </div>
         </div>
-        <form
-            method="post"
-            action="/authenticate"
-            class="column columns is-flex is-flex-direction-column is-justify-content-space-evenly"
-        >
+        <form method="post" action="/authenticate"
+            class="column columns is-flex is-flex-direction-column is-justify-content-space-evenly">
             <div class="column is-full my-0">
                 <!-- EMAIL -->
                 <label for="login-email" class="my-0">Email</label>
-                <input
-                    name="login-email"
-                    type="email"
-                    class="input my-1"
-                    placeholder="Email"
-                />
+                <input name="login-email" type="email" class="input my-1" placeholder="Email" />
             </div>
             <div class="column is-full my-0">
                 <!-- PASSWORD -->
                 <label for="password" class="my-0">Password</label>
-                <input
-                    name="password"
-                    type="password"
-                    class="input my-1"
-                    placeholder="Password"
-                />
+                <input name="password" type="password" class="input my-1" placeholder="Password" />
                 <!--FORGOT PASSWORD  -->
                 <p class="my-1">
                     <strong style="text-decoration: underline; cursor: pointer">
@@ -56,11 +37,7 @@
             </div>
             <div class="column is-full is-medium is-responsive">
                 <!-- SUBMIT BUTTON -->
-                <input
-                    class="button is-dark is-fullwidth my-2"
-                    type="submit"
-                    value="Log in"
-                />
+                <input class="button is-dark is-fullwidth my-2" type="submit" value="Log in" />
             </div>
         </form>
     </div>

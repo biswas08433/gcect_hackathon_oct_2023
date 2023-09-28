@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/biswas08433/chatter/data"
+	"github.com/biswas08433/teachwise/data"
 )
 
 // GET /threads/new-thread

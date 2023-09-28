@@ -10,6 +10,7 @@
     ],
     "folders": [
         "./public",
-        "./templates"
+        "./templates",
+        "./data"
     ]
 }

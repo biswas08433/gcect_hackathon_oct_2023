@@ -2,7 +2,7 @@
 
 <div class="container box">
     <p>
-        <a href="/thread/new">Start a thread</a> or join one below!
+        <a href="/thread/new-thread">Start a thread</a> or join one below!
     </p>
 </div>
 
@@ -15,7 +15,7 @@
         <div class="panel-body p-3">
             Started by {{ .User.Name }} - {{ .CreatedAtDate }} - {{ .NumReplies }} posts.
             <div class="is-pulled-right">
-                <a class="mr-3" href="/thread/read-thread?uuid={{.Uuid }}">Read nothing</a>
+                <a class="mr-3" href="/thread/read-thread?uuid={{ .Uuid }}">Read nothing</a>
             </div>
         </div>
     </div>

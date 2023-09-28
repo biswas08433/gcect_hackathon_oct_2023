@@ -1,4 +1,4 @@
-module github.com/biswas08433/chatter
+module github.com/biswas08433/teachwise
 
 go 1.21.0
 
