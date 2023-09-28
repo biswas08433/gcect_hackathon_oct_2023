@@ -1,104 +1,92 @@
 {{ define "content" }}
-<section class="columns is-centered is-vcentered is-flex" id="signup-page">
-    <div
-        class="is-flex is-flex-direction-column cloumns column is-4 block box is-centered is-vcentered"
-        id="signup"
-        style="padding: 30px; margin: auto; scale: 94%"
-    >
-        <div
-            class="column columns is-desktop is-flex is-flex-direction-column"
-            style="margin: 0"
-        >
-            <h1 class="column is-full is-size-3 has-text-centered p-0 m-0">
-                Logo
-            </h1>
-            <div class="column is-size-6 has-text-centered p-0">
-                Sign up to your account
-            </div>
-        </div>
-        <!-- SIGN UP FORM -->
-        <form
-            action=""
-            class="column columns is-flex is-flex-direction-column is-justify-content-space-evenly"
-        >
-            <div class="column is-flex is-full my-0 p-0">
-                <div class="column is-half my-0 py-0 px-2">
-                    <!-- FIRST NAME -->
-                    <label for="fname" class="my-0">First Name</label>
-                    <input
-                        name="fname"
-                        type="text"
-                        class="input my-1"
-                        placeholder="First Name"
-                    />
-                </div>
-                <div class="column is-half my-0 py-0 px-2">
-                    <!-- LAST NAME -->
-                    <label for="lname" class="my-0">Last Name</label>
-                    <input
-                        name="lname"
-                        type="text"
-                        class="input my-1"
-                        placeholder="Last Name"
-                    />
+<!-- TOP SPACER -->
+<section class="section"></section>
+
+<section class="section container" id="signup-block">
+    <div class="columns is-centered">
+        <div class="column box is-5 p-5">
+
+            <!-- HEADING -->
+            <div class="has-text-centered mb-6">
+                <h1 class="title">
+                    TeachWise
+                </h1>
+                <div class="">
+                    <p class="subtitle">Sign up to your account</p>
                 </div>
             </div>
-            <div class="column is-full my-1">
+
+            <!-- SIGN UP FORM -->
+            <form method="post" action="/signup-account">
+                <div class="field my-2">
+                    <div class="columns">
+
+                        <!-- FIRST NAME -->
+                        <div class="column">
+                            <label for="first-name">First Name*</label>
+                            <div class="control">
+                                <input id="first-name" name="first-name" type="text" class="input my-1"
+                                    placeholder="Harry" required />
+                            </div>
+                        </div>
+
+                        <!-- LAST NAME -->
+                        <div class="column">
+                            <label for="last-name">Last Name</label>
+                            <div class="control">
+                                <input id="last-name" name="last-name" type="text" class="input my-1"
+                                    placeholder="Potter" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- EMAIL -->
-                <label for="email" class="my-0">Email</label>
-                <input
-                    name="email"
-                    type="email"
-                    class="input my-1"
-                    placeholder="Email"
-                />
-            </div>
-            <div class="column is-full my-1">
-                <!-- PASSWORD -->
-                <label for="password" class="my-0">Password</label>
-                <input
-                    name="password"
-                    type="password"
-                    class="input my-1"
-                    placeholder="Password"
-                />
-            </div>
-            <div class="column is-full my-1">
-                <!-- CONFIRM PASSWORD -->
-                <label for="retype-password" class="my-0">
-                    Confirm Password
-                </label>
-                <input
-                    name="retype-password"
-                    type="password"
-                    class="input my-1"
-                    placeholder="Confirm Password"
-                />
-            </div>
+                <div class="field my-2">
+
+                    <label for="email">Email*</label>
+                    <div class="control">
+                        <input id="email" name="email" type="email" class="input my-1" placeholder="Email" required />
+                    </div>
+
+                </div>
+
+                <div class="field my-2">
+                    <!-- PASSWORD -->
+                    <label for="password">Password</label>
+                    <div class="control">
+                        <input id="password" name="password" type="password" class="input my-1"
+                            placeholder="Password" />
+                    </div>
+
+                    <!-- CONFIRM PASSWORD -->
+                    <label for="retype-password">Confirm Password</label>
+                    <div class="control">
+                        <input name="retype-password" type="password" class="input my-1"
+                            placeholder="Confirm Password" />
+                    </div>
+
+                </div>
+
+
+                <div class="field mt-5">
+                    <!-- SUBMIT BUTTON -->
+                    <div class="control">
+                        <input class="button is-dark is-fullwidth is-responsive my-1" type="submit" value="Sign Up" />
+                    </div>
+                </div>
+
+            </form>
+
+            <!-- EXTRA BUTTONS -->
             <!-- LINK TO LOG IN PAGE -->
-            <div class="column has-text-left is-size-7 px-2 py-1">
+            <div class="has-text-left is-size-7 px-2 py-1 mt-4">
                 Already have an account?
-                <a
-                    href="/login"
-                    style="
-                        text-decoration: underline;
-                        cursor: pointer;
-                        color: black;
-                        font-weight: bold;
-                    "
-                >
+                <a href="/login" class="is-underlined has-text-weight-bold has-text-black">
                     Log In.
                 </a>
             </div>
-            <div class="column is-full is-medium is-responsive">
-                <!-- SUBMIT BUTTON -->
-                <input
-                    class="button is-dark is-fullwidth my-1"
-                    type="submit"
-                    value="Sign Up"
-                />
-            </div>
-        </form>
+        </div>
     </div>
 </section>
 

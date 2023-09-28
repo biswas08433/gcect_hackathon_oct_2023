@@ -1,1 +1,1 @@
-# gcect_hackathon_oct_2023
+# gcect_hackathon_oct_2023 - teachwise

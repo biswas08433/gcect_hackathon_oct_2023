@@ -1,21 +1,23 @@
-.top-spacer {
-    min-height: 200px;
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400&display=swap');
+
+html,
+body {
+    font-family: 'Ubuntu', sans-serif;
 }
-#login-page,
-#signup-page {
-    min-height: 115vh;
-    background-color: #21212118;
-}
+
 .section {
     background-color: rgb(218, 251, 251);
 }
+
 .title {
     font-size: 30px;
 }
+
 .items {
    display: flex;
    justify-content: space-between;
 }
+
 .items .icon {
    border-radius: 12px;
    font-size: 80px;
@@ -24,10 +26,12 @@
    padding: 100px 100px;
    cursor: pointer;
 }
+
 .icon:hover {
   color: rgb(132, 118, 250);
   background-color: rgb(170, 161, 251);
  }
+
 .texticon {
     display: block; 
     text-align: center;
