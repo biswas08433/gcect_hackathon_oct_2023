@@ -1,46 +1,69 @@
 {{ define "content" }}
-
-<div class="top-spacer"></div>
-
-<div class="columns is-centered ">
-    <form class="column is-3 box p-6" method="post" action="/authenticate">
-        <h1 class="is-size-2 has-text-weight-semibold mb-4"><a href="/">Chatter</a></h1>
-        <div class="field">
-            <label class="label">Email</label>
-            <div class="control has-icons-left">
-                <input class="input" type="email" placeholder="harry@abc" name="email" required>
-                <span class="icon is-small is-left">
-                    <img src="/static/feather/mail.svg" alt="user-icon">
-                </span>
+<section class="columns is-centered is-vcentered is-flex" id="login-page">
+    <div
+        class="is-flex is-flex-direction-column cloumns column is-4 block box is-centered is-vcentered"
+        id="login"
+        style="padding: 30px; margin: auto"
+    >
+        <div
+            class="column columns is-desktop is-flex is-flex-direction-column"
+            style="margin: 0"
+        >
+            <h1 class="column is-full is-size-3 has-text-centered p-0 m-1">
+                Logo
+            </h1>
+            <div class="column is-size-6 has-text-centered p-0">
+                Sign in to your account
             </div>
         </div>
-
-        <div class="field">
-            <label class="label">Password</label>
-            <div class="control has-icons-left">
-                <input class="input" type="password" placeholder="someStRoNgPaSSwoRd_5267" name="password" required>
-                <span class="icon is-small is-left">
-                    <img src="/static/feather/lock.svg" alt="user-icon">
-                </span>
+        <form
+            method="post"
+            action="/authenticate"
+            class="column columns is-flex is-flex-direction-column is-justify-content-space-evenly"
+        >
+            <div class="column is-full my-0">
+                <!-- EMAIL -->
+                <label for="login-email" class="my-0">Email</label>
+                <input
+                    name="login-email"
+                    type="email"
+                    class="input my-1"
+                    placeholder="Email"
+                />
             </div>
-        </div>
-
-        <div class="field is-grouped mt-5">
-            <div class="control">
-                <input type="submit" class="button is-link" value="Sign in">
+            <div class="column is-full my-0">
+                <!-- PASSWORD -->
+                <label for="password" class="my-0">Password</label>
+                <input
+                    name="password"
+                    type="password"
+                    class="input my-1"
+                    placeholder="Password"
+                />
+                <!--FORGOT PASSWORD  -->
+                <p class="my-1">
+                    <strong style="text-decoration: underline; cursor: pointer">
+                        <a href="#" style="color: black">Forgot password ?</a>
+                    </strong>
+                </p>
+                <!-- LINK TO SIGN UP PAGE -->
+                <div class="column has-text-left is-size-7 px-0 py-1">
+                    Don't have an account?
+                    <strong style="text-decoration: underline; cursor: pointer">
+                        <a href="/signup" style="color: black">Create one.</a>
+                    </strong>
+                </div>
             </div>
-        </div>
-        <a href="/signup">New to Chatter?</a>
-    </form>
-
-</div>
-<div class="has-text-centered mt-6">
-    <a class="mx-2" href="#">Terms</a>
-    <a class="mx-2" href="#">Privacy</a>
-    <a class="mx-2" href="#">Docs</a>
-    <a class="mx-2" href="#">Contact</a>
-</div>
-
-
+            <div class="column is-full is-medium is-responsive">
+                <!-- SUBMIT BUTTON -->
+                <input
+                    class="button is-dark is-fullwidth my-2"
+                    type="submit"
+                    value="Log in"
+                />
+            </div>
+        </form>
+    </div>
+</section>
 
 {{ end }}
