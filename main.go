@@ -31,6 +31,6 @@ func main() {
 		WriteTimeout:   time.Duration(config.WriteTimeout * int64(time.Second)),
 		MaxHeaderBytes: 1 << 20,
 	}
-	fmt.Println("ChitChat", Version(), "started at", config.Address)
+	fmt.Println("Server", Version(), "started at", config.Address)
 	server.ListenAndServe()
 }

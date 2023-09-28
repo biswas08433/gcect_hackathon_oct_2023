@@ -1,8 +1,6 @@
-.top-spacer {
-    min-height: 200px;
-}
-#login-page,
-#signup-page {
-    min-height: 115vh;
-    background-color: #21212118;
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400&display=swap');
+
+html,
+body {
+    font-family: 'Ubuntu', sans-serif;
 }

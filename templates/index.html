@@ -1,27 +1,6 @@
 {{ define "content" }}
 
-<div class="container box">
-    <p>
-        <a href="/thread/new-thread">Start a thread</a> or join one below!
-    </p>
-</div>
 
-<div class="container">
-    {{ range . }}
-    <div class="panel">
-        <div class="panel-heading">
-            <span>{{ .Topic }}</span>
-        </div>
-        <div class="panel-body p-3">
-            Started by {{ .User.Name }} - {{ .CreatedAtDate }} - {{ .NumReplies }} posts.
-            <div class="is-pulled-right">
-                <a class="mr-3" href="/thread/read-thread?uuid={{ .Uuid }}">Read nothing</a>
-            </div>
-        </div>
-    </div>
-
-    {{ end }}
-</div>
 
 
 {{ end }}
