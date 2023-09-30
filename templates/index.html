@@ -1,69 +1,76 @@
 {{ define "content" }}
 
+<!-- SUBJECTS SECTION -->
 <section class="section">
-    <div class="container">
+  <div class="container">
+    <div class="block mb-6">
       <h1 class="title">
         What do you want to learn?
       </h1>
     </div>
-    <br>
-    <div class="items">
-      <div class="texticon">
-        <button class="icon"><span class="fa-solid fa-language"></span></button>
-        <h2>Literature</h2>
-      </div>
-      <div class="texticon">
-        <button class="icon"><span class="fa-solid fa-desktop"></span></button></span></button>
-        <h2>Computer</h2>
-      </div>
-      <div class="texticon">
-        <button class="icon"><span class="fa-regular fa-handshake"></span></button>
-        <h2>Political Science</h2>
-      </div>
-      <div class="texticon">
-        <button class="icon"><span class="fa-solid fa-shapes"></span></button>
-        <h2>Mathematics</h2>
-      </div>
-      <div class="texticon">
-        <button class="icon"><span class="fa-solid fa-compass"></span></button>
-        <h2>Physics</h2>
-      </div>
-      <div class="texticon">
-        <button class="icon"><span class="fa-solid fa-atom"></span></button>
-        <h2>Chemistry</h2>
+
+    <!-- SUBJECT ROW -->
+    <div class="columns is-multiline subjects">
+      <!-- SUBJECTS CARDS WILL GO HERE WITH JAVASCRIPT -->
+    </div>
+
+    <!-- SEE MORE BUTTON FOR SUBJECTS -->
+    <div class="field">
+      <div class="control">
+        <button class="button is-link is-pulled-right">See More</button>
       </div>
     </div>
-    <br>
-    <div class="items">
-      <div class="texticon">
-        <button class="icon"><span class="fa-solid fa-microscope"></span></button>
-        <h2>Biology</h2>
-      </div>
-      <div class="texticon">
-        <button class="icon"><span class="fa-solid fa-earth-americas"></span></button>
-        <h2>Geography</h2>
-      </div>
-      <div class="texticon">
-        <button class="icon"><span class="fa-solid fa-industry"></span></button>
-        <h2>Economics</h2>
-      </div>
-      <div class="texticon">
-        <button class="icon"><span class="fa-solid fa-music"></span></button>
-        <h2>Music</h2>
-      </div>
-      <div class="texticon">
-        <button class="icon"><span class="fa-solid fa-spoon"></span></button>
-        <h2>Nutrition</h2>
-      </div>
-      <div class="texticon">
-        <button class="icon"><span class="fa-solid fa-user-astronaut"></span></button>
-        <h2>Astronomy</h2>
-      </div>
-    </div>
-    <br>
-    <div><button class="button is-link is-focused">See More</button></div>
+
+  </div>
 </section>
 
+
+<!-- SCRIPT -->
+<script>
+  let cell = `
+    <div class="column is-2">
+        <div class="card">
+
+          <div class="card-header p-2">
+            <h2 class="title is-4 card-header-title">{title}</h2>
+          </div>
+
+          <div class="card-image" style="font-size: 7rem;">
+            <figure class="image is-4by3 p-0 has-text-centered">
+              <span class="icon is-large">
+                <i class="fa-solid {icon-class}">
+                </i>
+              </span>
+            </figure>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  `
+  titles_icons = [
+    ["Literature", "fa-language"],
+    ["Computer", "fa-desktop"],
+    ["Pol. Sc.", "fa-handshake"],
+    ["Mathematics", "fa-shapes"],
+    ["Physics", "fa-compass"],
+    ["Chemistry", "fa-atom"],
+    ["Biology", "fa-microscope"],
+    ["Geography", "fa-earth-americas"],
+    ["Economics", "fa-industry"],
+    ["Music", "fa-music"],
+    ["Nutrition", "fa-earth-americas"],
+    ["Astronomy", "fa-user-astronaut"],
+  ];
+  let subjects = $(".subjects");
+  for (let index = 0; index < titles_icons.length; index++) {
+    const element = titles_icons[index];
+    console.log(element)
+    let edited_cell = cell.replace("{title}", element[0]);
+    edited_cell = edited_cell.replace("{icon-class}", element[1]);
+    subjects.html(subjects.html() + edited_cell);
+  }
+</script>
 
 
 {{ end }}

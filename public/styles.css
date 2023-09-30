@@ -4,35 +4,3 @@ html,
 body {
     font-family: 'Ubuntu', sans-serif;
 }
-
-.section {
-    background-color: rgb(218, 251, 251);
-}
-
-.title {
-    font-size: 30px;
-}
-
-.items {
-   display: flex;
-   justify-content: space-between;
-}
-
-.items .icon {
-   border-radius: 12px;
-   font-size: 80px;
-   color: rgb(170, 161, 251);
-   background-color: rgb(132, 118, 250);
-   padding: 100px 100px;
-   cursor: pointer;
-}
-
-.icon:hover {
-  color: rgb(132, 118, 250);
-  background-color: rgb(170, 161, 251);
- }
-
-.texticon {
-    display: block; 
-    text-align: center;
-}

@@ -9,7 +9,7 @@
             <!-- HEADING -->
             <div class="has-text-centered mb-6">
                 <h1 class="title">
-                    TeachWise
+                    <a href="/" class="has-text-black">TeachWise</a>
                 </h1>
                 <div class="">
                     <p class="subtitle">Sign up to your account</p>
@@ -55,19 +55,26 @@
                     <!-- PASSWORD -->
                     <label for="password">Password</label>
                     <div class="control">
-                        <input id="password" name="password" type="password" class="input my-1"
-                            placeholder="Password" />
+                        <input id="password" name="password" type="password" class="input my-1" placeholder="Password"
+                            required />
                     </div>
 
                     <!-- CONFIRM PASSWORD -->
                     <label for="retype-password">Confirm Password</label>
                     <div class="control">
-                        <input name="retype-password" type="password" class="input my-1"
-                            placeholder="Confirm Password" />
+                        <input id="retype-password" name="retype-password" type="password" class="input my-1"
+                            placeholder="Confirm Password" required />
                     </div>
 
                 </div>
 
+                <div id="message" class="block">
+                    <h3>Password must contain the following:</h3>
+                    <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                    <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                    <p id="number" class="invalid">A <b>number</b></p>
+                    <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                </div>
 
                 <div class="field mt-5">
                     <!-- SUBMIT BUTTON -->
@@ -75,6 +82,8 @@
                         <input class="button is-dark is-fullwidth is-responsive my-1" type="submit" value="Sign Up" />
                     </div>
                 </div>
+
+
 
             </form>
 
@@ -86,8 +95,10 @@
                     Log In.
                 </a>
             </div>
+
         </div>
     </div>
 </section>
+<script src="/static/password_validation.js"></script>
 
 {{ end }}

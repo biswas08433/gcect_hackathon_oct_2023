@@ -2,8 +2,6 @@ package main
 
 import (
 	"net/http"
-
-	"github.com/biswas08433/teachwise/data"
 )
 
 // GET /err?msg=
@@ -19,17 +17,15 @@ func Err(res http.ResponseWriter, req *http.Request) {
 }
 
 func Index(res http.ResponseWriter, req *http.Request) {
-	// fmt.Println("Index Requested") // Debug
-	threads, err := data.Threads()
-	if err != nil {
-		ShowError(res, req, err.Error())
-	} else {
-		if !IsLoggedIn(res, req) {
-			GenerateHTML(res, threads, "layout", "public_navbar", "index")
+	// if err != nil {
+	// 	ShowError(res, req, err.Error())
+	// } else {
+	if !IsLoggedIn(res, req) {
+		GenerateHTML(res, nil, "layout", "public_navbar", "index")
 
-		} else {
-			GenerateHTML(res, threads, "layout", "private_navbar", "index")
-		}
+	} else {
+		GenerateHTML(res, nil, "layout", "private_navbar", "index")
 	}
+	// }
 
 }

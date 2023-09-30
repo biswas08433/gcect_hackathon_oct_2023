@@ -1,20 +1,11 @@
 let password = $("#password");
+let retype_password = $("#retype-password")
 let lowercase_message = $("#letter");
 let capital_message = $("#capital");
 let number_message = $("#number");
 let length_message = $("#length");
 
-$("#message").hide();
-
-password.blur(function () {
-    $("#message").hide();
-})
-
-password.focus(function () {
-    $("#message").show();
-})
-
-password.keyup(function () {
+let handler = function () {
     let success_class = "has-text-success";
 
     let lower_case = /[a-z]/g;
@@ -47,4 +38,7 @@ password.keyup(function () {
         length_message.removeClass(success_class);
     }
 
-})
+}
+
+password.keyup(handler)
+retype_password.keyup(handler)

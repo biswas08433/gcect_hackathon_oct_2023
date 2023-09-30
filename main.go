@@ -19,10 +19,6 @@ func main() {
 	mux.HandleFunc("/signup", Signup)
 	mux.HandleFunc("/signup-account", SignupAccount) // POST
 	mux.HandleFunc("/authenticate", Authenticate)    // POST
-	mux.HandleFunc("/thread/read-thread", ReadThread)
-	mux.HandleFunc("/thread/new-thread", NewThread)
-	mux.HandleFunc("/thread/create-thread", CreateThread) // POST
-	mux.HandleFunc("/thread/create-post", CreatePost)     // POST
 
 	server := &http.Server{
 		Addr:           config.Address,
