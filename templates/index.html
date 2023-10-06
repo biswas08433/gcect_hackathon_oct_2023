@@ -4,7 +4,7 @@
 <section class="section">
   <div class="container">
     <div class="block mb-6">
-      <h1 class="title">
+      <h1 class="title subject-section-qn">
         What do you want to learn?
       </h1>
     </div>
@@ -29,8 +29,8 @@
 <script>
   let cell = `
     <div class="column is-2">
-        <div class="card">
-
+      <a href="/trending-teachers?subject={subject-tag}">
+        <div class="card card-hover">
           <div class="card-header p-2">
             <h2 class="title is-4 card-header-title">{title}</h2>
           </div>
@@ -45,29 +45,30 @@
           </div>
 
         </div>
-      </div>
+      </a>
     </div>
   `
   titles_icons = [
-    ["Literature", "fa-language"],
-    ["Computer", "fa-desktop"],
-    ["Pol. Sc.", "fa-handshake"],
-    ["Mathematics", "fa-shapes"],
-    ["Physics", "fa-compass"],
-    ["Chemistry", "fa-atom"],
-    ["Biology", "fa-microscope"],
-    ["Geography", "fa-earth-americas"],
-    ["Economics", "fa-industry"],
-    ["Music", "fa-music"],
-    ["Nutrition", "fa-earth-americas"],
-    ["Astronomy", "fa-user-astronaut"],
+    ["Literature", "literature", "fa-language"],
+    ["Computer", "computer", "fa-desktop"],
+    ["Pol. Sc.", "pol-sc", "fa-handshake"],
+    ["Mathematics", "mathematics", "fa-shapes"],
+    ["Physics", "physics", "fa-compass"],
+    ["Chemistry", "chemistry", "fa-atom"],
+    ["Biology", "biology", "fa-microscope"],
+    ["Geography", "geography", "fa-earth-americas"],
+    ["Economics", "economics", "fa-industry"],
+    ["Music", "music", "fa-music"],
+    ["Nutrition", "nutrition", "fa-earth-americas"],
+    ["Astronomy", "astronomy", "fa-user-astronaut"],
   ];
   let subjects = $(".subjects");
   for (let index = 0; index < titles_icons.length; index++) {
     const element = titles_icons[index];
-    console.log(element)
+    // console.log(element)
     let edited_cell = cell.replace("{title}", element[0]);
-    edited_cell = edited_cell.replace("{icon-class}", element[1]);
+    edited_cell = edited_cell.replace("{subject-tag}", element[1])
+    edited_cell = edited_cell.replace("{icon-class}", element[2]);
     subjects.html(subjects.html() + edited_cell);
   }
 </script>

@@ -1,38 +1,57 @@
-DROP TABLE sessions;
-DROP TABLE posts;
-DROP TABLE threads;
-DROP TABLE users;
+DROP TABLE "users";
+DROP TABLE "sessions";
+DROP TABLE "subjects";
+DROP TABLE "ratings";
+DROP TABLE "addresses";
 
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    uuid VARCHAR(64) NOT NULL UNIQUE,
-    name VARCHAR(255),
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password varchar(255) NOT NULL,
-    created_at timestamp NOT NULL
+CREATE TABLE "users" (
+    "id" INTEGER,
+    "uuid" TEXT NOT NULL UNIQUE,
+    "first_name" TEXT,
+    "last_name" TEXT,
+    "email" TEXT NOT NULL UNIQUE,
+    "password" TEXT NOT NULL,
+    "created_at" DATETIME NOT NULL,
+    PRIMARY KEY ("id")
 );
 
-CREATE TABLE sessions(
-    id SERIAL PRIMARY KEY,
-    uuid VARCHAR(64) NOT NULL UNIQUE,
-    email VARCHAR(255),
-    user_id INTEGER REFERENCES users(id),
-    created_at TIMESTAMP NOT NULL
+CREATE TABLE "sessions"(
+    "id" INTEGER,
+    "uuid" TEXT NOT NULL UNIQUE,
+    "email" TEXT NOT NULL UNIQUE,
+    "created_at" DATETIME NOT NULL,
+    "user_id" INTEGER,
+    PRIMARY KEY ("id"),
+    FOREIGN KEY ("user_id") REFERENCES "users"("id")
 );
 
-CREATE TABLE threads(
-    id SERIAL PRIMARY KEY,
-    uuid VARCHAR(64) NOT NULL UNIQUE,
-    topic TEXT,
-    user_id INTEGER REFERENCES users(id),
-    created_at TIMESTAMP NOT NULL 
+CREATE TABLE "subjects"(
+    "id" INTEGER,
+    "title" TEXT NOT NULL UNIQUE,
+    PRIMARY KEY ("id")
 );
 
-CREATE TABLE posts(
-    id SERIAL PRIMARY KEY,
-    uuid VARCHAR(64) NOT NULL UNIQUE,
-    body TEXT,
-    user_id INTEGER REFERENCES users(id),
-    thread_id INTEGER REFERENCES threads(id),
-    created_at TIMESTAMP NOT NULL
+CREATE TABLE "ratings"(
+    "rating" INTEGER CHECK("rating">=0),
+    "rater_id" INTEGER,
+    "rated_id" INTEGER,
+    PRIMARY KEY ("rater_id", "rated_id"),
+    FOREIGN KEY ("rater_id") REFERENCES "users"("id"),
+    FOREIGN KEY ("rated_id") REFERENCES "users"("id")
+);
+
+CREATE TABLE "addresses"(
+    "id" INTEGER,
+    "line_1" TEXT,
+    "line_2" TEXT,
+    "landmark" TEXT,
+    "city" TEXT,
+    "state" TEXT,
+    "pin" INTEGER,
+    "country" TEXT,
+    "latitude" REAL,
+    "longitude" REAL,
+    "user_id" INTEGER,
+    PRIMARY KEY ("id"),
+    FOREIGN KEY("user_id") REFERENCES "users"("id")
 );

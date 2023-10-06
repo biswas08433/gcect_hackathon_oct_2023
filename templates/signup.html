@@ -17,7 +17,7 @@
             </div>
 
             <!-- SIGN UP FORM -->
-            <form method="post" action="/signup-account">
+            <form method="post" action="/signup-account" id="signup-form">
                 <div class="field my-2">
                     <div class="columns">
 
@@ -68,7 +68,7 @@
 
                 </div>
 
-                <div id="message" class="block">
+                <div id="password-validation-message" class="block">
                     <h3>Password must contain the following:</h3>
                     <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
                     <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
@@ -76,10 +76,15 @@
                     <p id="length" class="invalid">Minimum <b>8 characters</b></p>
                 </div>
 
+                <div id="retype-password-message" class="block">
+                    <p id="retype-password-message-text" class="invalid">Passwords <b>do not match</b></p>
+                </div>
+
                 <div class="field mt-5">
                     <!-- SUBMIT BUTTON -->
                     <div class="control">
-                        <input class="button is-dark is-fullwidth is-responsive my-1" type="submit" value="Sign Up" />
+                        <input id="submit-button" class="button is-dark is-fullwidth is-responsive my-1" type="submit"
+                            value="Sign Up" />
                     </div>
                 </div>
 
@@ -96,6 +101,10 @@
                 </a>
             </div>
 
+        </div>
+        <div id="notification-1" class="notification is-danger is-light">
+            <button class="delete"></button>
+            <p class="notification-message">Password do not match</p>
         </div>
     </div>
 </section>

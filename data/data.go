@@ -2,21 +2,25 @@ package data
 
 import (
 	"crypto/rand"
-	"crypto/sha1"
+	"crypto/sha256"
 	"database/sql"
 	"fmt"
 	"log"
 	"time"
 
-	_ "github.com/lib/pq"
+	_ "github.com/mattn/go-sqlite3"
 )
 
-var Db *sql.DB
+var (
+	Db *sql.DB
+	// ctx context.Context
+)
 
 type User struct {
 	Id        int
 	Uuid      string
-	Name      string
+	FirstName string
+	LastName  string
 	Email     string
 	Password  string
 	CreatedAt time.Time
@@ -30,34 +34,19 @@ type Session struct {
 	CreatedAt time.Time
 }
 
-type Thread struct {
-	Id        int
-	Uuid      string
-	Topic     string
-	UserId    int
-	CreatedAt time.Time
-}
-
-type Post struct {
-	Id        int
-	Uuid      string
-	Body      string
-	UserId    int
-	ThreadId  int
-	CreatedAt time.Time
-}
-
 func init() {
 	var err error
-	Db, err = sql.Open("postgres", "password=qwerty_8433 dbname=chitchat sslmode=disable")
+	Db, err = sql.Open("sqlite3", "./teachwise_data.db")
 	if err != nil {
 		log.Fatalln("db_init_error", err.Error())
 	}
+	if Db.Ping() != nil {
+		log.Fatalln("db_ping_error", err.Error())
+	}
 }
 
-func Encrypt(plaintext string) (cryptext string) {
-	cryptext = fmt.Sprintf("%x", sha1.Sum([]byte(plaintext)))
-	return
+func Encrypt(plaintext string) string {
+	return fmt.Sprintf("%x", sha256.Sum256([]byte(plaintext)))
 }
 
 func createUuid() (uuid string) {

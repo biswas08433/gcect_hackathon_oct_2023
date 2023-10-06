@@ -4,3 +4,7 @@ html,
 body {
     font-family: 'Ubuntu', sans-serif;
 }
+
+.card:hover {
+    scale: 110%;
+}

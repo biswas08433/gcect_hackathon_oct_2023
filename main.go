@@ -2,31 +2,25 @@ package main
 
 import (
 	"fmt"
-	"net/http"
-	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	static_file_server := http.FileServer(http.Dir(config.Static))
 
-	mux := http.NewServeMux()
-	mux.Handle("/static/", http.StripPrefix("/static/", static_file_server))
+	router := gin.Default()
+	router.Static("/static", "./public")
 
-	mux.HandleFunc("/", Index)
-	mux.HandleFunc("/err", Err)
-	mux.HandleFunc("/login", Login)
-	mux.HandleFunc("/logout", Logout)
-	mux.HandleFunc("/signup", Signup)
-	mux.HandleFunc("/signup-account", SignupAccount) // POST
-	mux.HandleFunc("/authenticate", Authenticate)    // POST
+	// mux.Handle("/static/", http.StripPrefix("/static/", static_file_server))
 
-	server := &http.Server{
-		Addr:           config.Address,
-		Handler:        mux,
-		ReadTimeout:    time.Duration(config.ReadTimeout * int64(time.Second)),
-		WriteTimeout:   time.Duration(config.WriteTimeout * int64(time.Second)),
-		MaxHeaderBytes: 1 << 20,
-	}
+	router.GET("/", Index)
+	router.GET("/err", Err)
+	router.GET("/login", Login)
+	router.GET("/logout", Logout)
+	router.GET("/signup", Signup)
+	router.POST("/signup-account", SignupAccount) // POST
+	router.POST("/authenticate", Authenticate)    // POST
+
 	fmt.Println("Server", Version(), "started at", config.Address)
-	server.ListenAndServe()
+	router.Run(config.Address)
 }

@@ -4,67 +4,67 @@ import (
 	"net/http"
 
 	"github.com/biswas08433/teachwise/data"
+	"github.com/gin-gonic/gin"
 )
 
 // POST /authenticate
-func Authenticate(res http.ResponseWriter, req *http.Request) {
-	req.ParseForm()
-
-	user, err := data.GetUserByEmail(req.PostFormValue("email"))
+func Authenticate(ctx *gin.Context) {
+	user, err := data.GetUserByEmail(ctx.PostForm("email"))
 	if err != nil {
 		Danger(err, "Cannot find user")
 	}
 
-	if user.Password == data.Encrypt(req.PostFormValue("password")) {
+	if user.Password == data.Encrypt(ctx.PostForm("password")) {
 		session, err := user.CreateSession()
 		if err != nil {
 			Danger(err, "Cannot create session")
 		}
-		cookie := http.Cookie{
-			Name:     "_cookie",
-			Value:    session.Uuid,
-			HttpOnly: true,
-		}
-		http.SetCookie(res, &cookie)
-		http.Redirect(res, req, "/", http.StatusFound)
+		ctx.SetCookie("session_cookie", session.Uuid, 2*24*3600, "/", "localhost", true, true)
+		ctx.Redirect(http.StatusFound, "/")
 	} else {
-		http.Redirect(res, req, "/login", http.StatusFound)
+		ctx.Redirect(http.StatusFound, "/login")
 	}
 }
 
-func Login(res http.ResponseWriter, req *http.Request) {
-	GenerateHTML(res, nil, "layout_login", "login")
+func Login(ctx *gin.Context) {
+	data := gin.H{
+		"Title": "Login",
+	}
+	GenerateHTML(ctx, data, "layout_login", "login")
 }
 
 // GET /logout
-func Logout(res http.ResponseWriter, req *http.Request) {
-	cookie, err := req.Cookie("_cookie")
+func Logout(ctx *gin.Context) {
+	cookie_value, err := ctx.Cookie("session_cookie")
 	if err == http.ErrNoCookie {
 		Warning(err, "Failed to get cookie")
 	}
-	data.DeleteSessionByUuid(cookie.Value)
-	http.Redirect(res, req, "/", http.StatusFound)
-
+	data.DeleteSessionByUuid(cookie_value)
+	ctx.Redirect(http.StatusFound, "/")
 }
 
 // GET /signup
-func Signup(res http.ResponseWriter, req *http.Request) {
-	GenerateHTML(res, nil, "layout_login", "signup")
+func Signup(ctx *gin.Context) {
+	data := gin.H{
+		"Title": "Signup",
+	}
+	GenerateHTML(ctx, data, "layout_login", "signup")
 }
 
 // POST /signup-account
-func SignupAccount(res http.ResponseWriter, req *http.Request) {
-	err := req.ParseForm()
-	if err != nil {
-		Danger(err, "Cannot parse form")
-	}
+func SignupAccount(ctx *gin.Context) {
 	user := data.User{
-		Name:     req.PostFormValue("name"),
-		Email:    req.PostFormValue("email"),
-		Password: req.PostFormValue("password"),
+		FirstName: ctx.PostForm("first-name"),
+		LastName:  ctx.PostForm("last-name"),
+		Email:     ctx.PostForm("email"),
+		Password:  ctx.PostForm("password"),
+	}
+	rp := ctx.PostForm("retype-password")
+	if rp != user.Password {
+		ctx.Redirect(http.StatusNotAcceptable, "/signup")
 	}
 	if err := user.Create(); err != nil {
 		Danger(err, "Cannot create user")
 	}
-	http.Redirect(res, req, "/login", http.StatusFound)
+	ctx.Redirect(http.StatusFound, "/login")
 }

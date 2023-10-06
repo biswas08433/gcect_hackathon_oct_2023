@@ -9,6 +9,7 @@ import (
 	"os"
 
 	"github.com/biswas08433/teachwise/data"
+	"github.com/gin-gonic/gin"
 )
 
 type Configuration struct {
@@ -35,7 +36,7 @@ func loadConfig() {
 }
 func init() {
 	loadConfig()
-	file, err := os.OpenFile("chatter.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	file, err := os.OpenFile("server.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatalln("Failed to open log file", err)
 	}
@@ -43,24 +44,24 @@ func init() {
 }
 
 // Checks if the user is logged in and has a session, if not err is not nil
-func IsLoggedIn(res http.ResponseWriter, req *http.Request) bool {
-	cookie, err := req.Cookie("_cookie")
+func IsLoggedIn(ctx *gin.Context) bool {
+	cookie_value, err := ctx.Cookie("session_cookie")
 	if err != nil {
 		return false
 	}
-	if ok, _ := data.CheckSessionValidity(cookie.Value); !ok {
+	if ok, _ := data.CheckSessionValidity(cookie_value); !ok {
 		return false
 	}
 	return true
 }
 
-func GetUserIfLoggedIn(res http.ResponseWriter, req *http.Request) (logged_in bool, user data.User) {
-	cookie, err := req.Cookie("_cookie")
+func GetUserIfLoggedIn(ctx *gin.Context) (logged_in bool, user data.User) {
+	cookie_value, err := ctx.Cookie("session_cookie")
 	if err != nil {
 		logged_in = false
 		return
 	}
-	logged_in, user = data.GetUserBySessionUuid(cookie.Value)
+	logged_in, user = data.GetUserBySessionUuid(cookie_value)
 	return
 }
 
@@ -85,8 +86,8 @@ func Version() string {
 	return config.Version
 }
 
-func ShowError(res http.ResponseWriter, req *http.Request, msg string) {
-	http.Redirect(res, req, fmt.Sprintf("/err?msg=%v", msg), http.StatusFound)
+func ShowError(ctx *gin.Context, msg string) {
+	ctx.Redirect(http.StatusFound, fmt.Sprintf("/err?msg=%v", msg))
 }
 
 func parseTemplateFiles(filenames ...string) (t *template.Template) {
@@ -102,35 +103,8 @@ func Files(format string, filenames ...string) (files []string) {
 	return
 }
 
-func GenerateHTML(res http.ResponseWriter, data interface{}, file_names ...string) {
+func GenerateHTML(ctx *gin.Context, data interface{}, file_names ...string) {
 	file_names = append(file_names, "common_head", "common_scripts")
 	templates := parseTemplateFiles(file_names...)
-	templates.Execute(res, data)
+	templates.Execute(ctx.Writer, data)
 }
-
-// func ListFilesInDirectory(dirPath string) ([]string, error) {
-// 	// Open the directory
-// 	dir, err := os.Open(dirPath)
-// 	if err != nil {
-// 		return nil, err
-// 	}
-// 	defer dir.Close()
-
-// 	// Read the directory entries
-// 	entries, err := dir.Readdir(0)
-// 	if err != nil {
-// 		return nil, err
-// 	}
-
-// 	// Initialize a slice to store filenames
-// 	var filenames []string
-
-// 	// Iterate through the directory entries
-// 	for _, entry := range entries {
-// 		if entry.Mode().IsRegular() {
-// 			filenames = append(filenames, fmt.Sprintf("%s/%s", dirPath, entry.Name()))
-// 		}
-// 	}
-
-// 	return filenames, nil
-// }
