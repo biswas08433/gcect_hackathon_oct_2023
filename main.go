@@ -21,6 +21,14 @@ func main() {
 	router.POST("/signup-account", SignupAccount) // POST
 	router.POST("/authenticate", Authenticate)    // POST
 
+	router.GET("/user/profile", Profile)
+	router.GET("/user/edit-profile", EditProfile)
+	router.POST("/user/edit-profile", UpdateProfile)
+
+	router.GET("/teachers", Teachers)
+
+	router.GET("/about", About)
+
 	fmt.Println("Server", Version(), "started at", config.Address)
 	router.Run(config.Address)
 }

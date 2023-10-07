@@ -1,0 +1,220 @@
+{{ define "content" }}
+<div class="p-6">
+    <style>
+        body {
+            min-height: 100vh;
+            background-color: #21212118;
+        }
+
+        hr {
+            background-color: #21212118;
+        }
+    </style>
+    <div class="columns is-justify-content-space-between">
+        <div class="column is-3">
+            <img src="https://img.freepik.com/premium-vector/female-user-profile-avatar-is-woman-character-screen-saver-with-emotions_505620-617.jpg"
+                alt="" srcset="" style="width: 100%; aspect-ratio: 1/1; border-radius: 100%" class="" />
+
+            <div class="is-size-4 has-text-centered">{{.User.FirstName}} {{.User.LastName}}</div>
+        </div>
+        <div class="column is-8">
+            <div class="py-4 is-flex is-justify-content-space-between is-flex-direction-column" style="height: 100%">
+                <!-- Location -->
+                <i class="fa-solid fa-location-dot">
+                    <span class="px-2">Kolkata</span>
+                </i>
+
+                <!-- About or Description -->
+                <div>
+                    <h2 class="is-size-4 has-text-left">About</h2>
+                    <p class="has-text-left">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing
+                        elit. Consectetur facilis temporibus voluptatem rem,
+                        ullam magnam? Itaque odit aliquid maxime ad commodi
+                        vero eligendi quas et, porro vitae. Suscipit
+                        perferendis eos molestiae aliquid quisquam?
+                        Molestiae tempore voluptates omnis quaerat impedit
+                        iusto!
+                    </p>
+                </div>
+                <button class="button is-dark is-normal has-text-centered" style="width: 15%">
+                    Join
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <h2 class="is-size-4 has-text-centered py-4 has-text-weight-semibold">
+            Subjects
+        </h2>
+        <table class="table is-fullwidth is-bordered py-4">
+            <thead>
+                <tr>
+                    <th>Subjects</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody id="subjects-table"></tbody>
+        </table>
+    </div>
+    <div>
+        <h2 class="is-size-4 has-text-centered py-4 has-text-weight-semibold">
+            Qualifications
+        </h2>
+        <div class="py-4 is-fullwidth" id="qualification"></div>
+    </div>
+    <div class="">
+        <h2 class="is-size-4 has-text-centered py-4 has-text-weight-semibold">
+            Get in Touch
+        </h2>
+        <div class="columns is-justify-content-space-between py-6 px-6" id="contacts"></div>
+    </div>
+    <div>
+        <h2 class="is-size-4 has-text-centered py-4 has-text-weight-semibold">
+            Rating & Reviews
+        </h2>
+        <div class="py-4 columns is-align-items-flex-end">
+            <!-- Rating -->
+            <div class="column is-4">
+                <div class="has-text-centered">
+                    <i class="fa-solid fa-star fa-xl">
+                        <span class="is-size-1">4.2</span>
+                    </i>
+                    <p class="py-6">
+                        26723 Ratings
+                        <br />
+                        &
+                        <br />
+                        7676876 Reviews
+                    </p>
+                </div>
+            </div>
+            <!-- Add Review -->
+            <div class="column is-7">
+                <h3>Add your review:</h3>
+                <form action="">
+                    <!-- Rating Star -->
+                    <!-- review title -->
+                    <input class="input my-1" type="text" placeholder="TITLE" />
+                    <!-- review description -->
+                    <textarea class="textarea is-fullwidth" placeholder="e.g. Hello world" rows="6"></textarea>
+                    <!-- submit review button -->
+                    <input type="submit" value="Add Review" class="button is-dark my-2" />
+                </form>
+            </div>
+        </div>
+        <!-- \Reviews/Comments by other people -->
+        <div class="px-6 py-4" id="review-list">
+            <h2 class="is-size-3 has-text-weight-semibold">Top Reviews</h2>
+        </div>
+    </div>
+</div>
+<script>
+    let subjects = [
+        ["Geography", "1-5"],
+        ["History", "1-5"],
+        ["English", "7-10"],
+    ];
+    // qualificationsData = [["Degree", "Subject", "institute", "year", "description"]];
+    let qualificationsData = [
+        [
+            "B. Tech",
+            "CSE",
+            "LALALA",
+            "327-837",
+            "kfhesufhgig esegfaif eiufiuf giu",
+        ],
+        [
+            "B. Sc",
+            "Subject",
+            "XYZ",
+            "4252",
+            "fkjkshf sghrsj hgsio hfaeh",
+        ],
+        [
+            "WBCHSE",
+            "Science",
+            "ABC",
+            "54345",
+            "skjhekj aefhaefhio iaefioae",
+        ],
+    ];
+    const contact = ["email@gmail.com", 32877283, "address lahrsgh"];
+</script>
+<script>
+    // subjects tables
+    const subjectsTable = document.querySelector("#subjects-table");
+    subjects.forEach((element) => {
+        let tr = document.createElement("tr");
+        let newSubject = `
+                        <th>${element[0]}</th>
+                        <th>${element[1]}</th>
+                `;
+        tr.innerHTML = newSubject;
+        subjectsTable.append(tr);
+    });
+    // qualification
+    let qualifications = document.querySelector("#qualification");
+    qualificationsData.forEach((item) => {
+        let div = document.createElement("div");
+        div.className = "box";
+        const newQualification = `
+                    <h3 class="is-size-5">
+                        <span class="has-text-weight-semibold">
+                            ${item[0]}, ${item[1]}
+                        </span>
+                        - ${item[2]}
+                    </h3>
+                    <p class="is-size-7 py-1">1900-1920</p>
+                    <p class="is-size-6">
+                        ${item[4]}
+                    </p>`;
+        div.innerHTML = newQualification;
+        qualifications.append(div);
+    });
+    // contact -> [email, phone, address]
+    const contactHTML = `
+                <i class="fa-solid fa-envelope fa-md">
+                    <span class="px-1">${contact[0]}</span>
+                </i>
+                <i class="fa-solid fa-phone fa-md">
+                    <span class="px-1">${contact[1]}</span>
+                </i>
+                <i class="fa-solid fa-location-dot fa-md">
+                    <span class="px-1">${contact[2]}</span>
+                </i>`;
+    document.querySelector("#contacts").innerHTML = contactHTML;
+    const reviewList = document.querySelector("#review-list");
+
+    let review = `<hr />
+                    <div class="columns is-justify-content-space-between py-2">
+                        <h3 class="column is-size-5 has-text-weight-semibold">
+                            ekta lomba title
+                        </h3>
+                        <!-- Stars -->
+                        <div class="column is-2">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Quisquam aperiam fugiat alias enim culpa fuga
+                        dolore eius corrupti vitae, recusandae maxime temporibus
+                        voluptate blanditiis odio.
+                    </p>
+                    <div class="columns is-justify-content-space-between py-2">
+                        <p class="column">by USERNAME</p>
+                        <p class="column is-2">DATE</p>
+                    </div>
+                </div>`;
+    for (let i = 0; i < 4; i++) {
+        let newReview = document.createElement("div");
+        newReview.innerHTML = review;
+        reviewList.append(newReview);
+    }
+</script>
+{{ end }}

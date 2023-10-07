@@ -1,77 +1,146 @@
-{{ define "content" }}
+{{define "content" }}
 
-<!-- SUBJECTS SECTION -->
-<section class="section">
-  <div class="container">
-    <div class="block mb-6">
-      <h1 class="title subject-section-qn">
-        What do you want to learn?
-      </h1>
+<style>
+    #hover-shadow {
+        box-shadow: none;
+    }
+
+    #hover-shadow:hover {
+        cursor: pointer;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+    #subject-card {
+        box-shadow: none;
+    }
+</style>
+<!-- main content -->
+<div class="columns is-centered">
+    <div class="column is-10">
+        <!-- hero -->
+        <section class="hero" style="height: 90vh">
+            <div class="hero-body">
+                <div class="columns">
+                    <div style="width: 50%">
+                        <div>
+                            <h1 class="is-size-1 my-6">TeachWise</h1>
+                            <p class="subtitle my-6">
+                                Empowering Minds, Shaping Futures. Connecting teachers and students through seamless
+                                communication, fostering learning, and empowering success in education
+                            </p>
+                        </div>
+                        <div class="columns">
+                            <button class="button mr-3">Sign Up</button>
+                            <button class="button mr-3 is-danger">
+                                Explore
+                            </button>
+                        </div>
+                    </div>
+                    <img src="https://img.freepik.com/free-vector/learning-concept-illustration_114360-6186.jpg" alt=""
+                        srcset="" style="width: 45%" />
+                </div>
+            </div>
+        </section>
+        <!-- subjects -->
+        <section class="section my-6">
+            <div class="container">
+                <div class="block mb-6 has-text-centered">
+                    <h1 class="title">Learn Various Subjects</h1>
+                </div>
+                <div class="columns is-multiline" id="subjects">
+                    <!-- CITY CARDS WILL GO HERE WITH JAVASCRIPT -->
+                </div>
+            </div>
+        </section>
+        <!-- cities -->
+        <section class="section my-6">
+            <div class="container">
+                <div class="block mb-6 has-text-centered">
+                    <h1 class="title">
+                        Search Educators Accross the cities
+                    </h1>
+                </div>
+                <!-- CITY ROW -->
+                <div class="columns is-multiline" id="cities">
+                    <!-- CITY CARDS WILL GO HERE WITH JAVASCRIPT -->
+                </div>
+            </div>
+        </section>
     </div>
-
-    <!-- SUBJECT ROW -->
-    <div class="columns is-multiline subjects">
-      <!-- SUBJECTS CARDS WILL GO HERE WITH JAVASCRIPT -->
-    </div>
-
-    <!-- SEE MORE BUTTON FOR SUBJECTS -->
-    <div class="field">
-      <div class="control">
-        <button class="button is-link is-pulled-right">See More</button>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
+</div>
 <!-- SCRIPT -->
 <script>
-  let cell = `
-    <div class="column is-2">
-      <a href="/trending-teachers?subject={subject-tag}">
-        <div class="card card-hover">
-          <div class="card-header p-2">
-            <h2 class="title is-4 card-header-title">{title}</h2>
-          </div>
+    let subject_cell = `
+        <div class="column is-2" id="hover-shadow">
+            <a href="/login"
+            <div class="card" id="subject-card">
+                <div class="card-image" style="scale: 80%;font-size: 7rem;">
+                    <figure class="image is-1by1 ">
+                        <img src="{link}">
+                    </figure>
+                </div>
+                <div class="p- has-text-centered" style="box-shadow:none;">
+                    <h2 class="is-1 is-size-5">{subject}</h2>
+                </div>
 
-          <div class="card-image" style="font-size: 7rem;">
-            <figure class="image is-4by3 p-0 has-text-centered">
-              <span class="icon is-large">
-                <i class="fa-solid {icon-class}">
-                </i>
-              </span>
-            </figure>
-          </div>
-
+            </div>
         </div>
-      </a>
-    </div>
-  `
-  titles_icons = [
-    ["Literature", "literature", "fa-language"],
-    ["Computer", "computer", "fa-desktop"],
-    ["Pol. Sc.", "pol-sc", "fa-handshake"],
-    ["Mathematics", "mathematics", "fa-shapes"],
-    ["Physics", "physics", "fa-compass"],
-    ["Chemistry", "chemistry", "fa-atom"],
-    ["Biology", "biology", "fa-microscope"],
-    ["Geography", "geography", "fa-earth-americas"],
-    ["Economics", "economics", "fa-industry"],
-    ["Music", "music", "fa-music"],
-    ["Nutrition", "nutrition", "fa-earth-americas"],
-    ["Astronomy", "astronomy", "fa-user-astronaut"],
-  ];
-  let subjects = $(".subjects");
-  for (let index = 0; index < titles_icons.length; index++) {
-    const element = titles_icons[index];
-    // console.log(element)
-    let edited_cell = cell.replace("{title}", element[0]);
-    edited_cell = edited_cell.replace("{subject-tag}", element[1])
-    edited_cell = edited_cell.replace("{icon-class}", element[2]);
-    subjects.html(subjects.html() + edited_cell);
-  }
-</script>
+    `
+    subjects_icons = [
+        ["Literature", "/static/asset/book.png"],
+        ["Computer", "/static/asset/computer.png"],
+        ["Law", "/static/asset/law.png"],
+        ["Mathematics", "/static/asset/maths.png"],
+        ["Physics", "/static/asset/relativity.png"],
+        ["Chemistry", "/static/asset/chemistry.png"],
+        ["Biology", "/static/asset/genetics.png"],
+        ["Geography", "/static/asset/geography.png"],
+        ["History", "/static/asset/clock.png"],
+        ["Music", "/static/asset/musical-note.png"],
+        ["Nutrition", "/static/asset/balanced-diet.png"],
+        ["Drawing", "/static/asset/art.png"],
+    ];
 
+    let subjects = $("#subjects")
+    for (let index = 0; index < subjects_icons.length; index++) {
+        const element = subjects_icons[index];
+        let edited_cell = subject_cell.replace("{subject}", element[0]);
+        edited_cell = edited_cell.replace("{link}", element[1]);
+        subjects.html(subjects.html() + edited_cell);
+    }
+
+    let city_cell = `
+    <div class="column is-2" id="hover-shadow">
+        <a href="/login"
+            <div class="card" id="subject-card">
+                <div class="card-image" style="scale: 80%;font-size: 7rem;">
+                    <figure class="image is-1by1 ">
+                        <img src="{link}">
+                    </figure>
+                </div>
+                <div class="p- has-text-centered" style="box-shadow:none;">
+                    <h2 class="is-1 is-size-5">{city}</h2>
+                </div>
+            </div>
+        </a>
+    </div>
+    `
+    city_icons = [
+        ["Kolkata", "/static/asset/golden-gate.png"],
+        ["Bangalore", "/static/asset/bangalore.png"],
+        ["Chennai", "static/asset/chennai.png"],
+        ["Delhi", "/static/asset/delhi.png"],
+        ["Jaipur", "/static/asset/jaipur.png"],
+        ["Mumbai", "/static/asset/mumbai.png"],
+    ];
+    let cities = $("#cities");
+    for (let index = 0; index < city_icons.length; index++) {
+        const element = city_icons[index];
+        console.log(element)
+        let edited_cell = city_cell.replace("{city}", element[0]);
+        edited_cell = edited_cell.replace("{link}", element[1]);
+        cities.html(cities.html() + edited_cell);
+    }
+</script>
 
 {{ end }}

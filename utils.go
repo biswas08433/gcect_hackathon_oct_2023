@@ -104,7 +104,7 @@ func Files(format string, filenames ...string) (files []string) {
 }
 
 func GenerateHTML(ctx *gin.Context, data interface{}, file_names ...string) {
-	file_names = append(file_names, "common_head", "common_scripts")
+	file_names = append(file_names, "common_head", "common_scripts", "footer")
 	templates := parseTemplateFiles(file_names...)
 	templates.Execute(ctx.Writer, data)
 }

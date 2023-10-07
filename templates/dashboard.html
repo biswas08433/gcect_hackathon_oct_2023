@@ -1,0 +1,211 @@
+{{ define "content" }}
+
+<!-- CITY SECTION -->
+<section class="section">
+  <div class="container">
+    <div class="block mb-6">
+      <h1 class="title">Where are you from?</h1>
+    </div>
+
+    <!-- CITY ROW -->
+    <div class="columns is-multiline cities">
+      <!-- CITY CARDS WILL GO HERE WITH JAVASCRIPT -->
+    </div>
+
+    <!-- SEE MORE BUTTON FOR CITIES -->
+    <div class="field">
+      <div class="control">
+        <button class="button is-link is-pulled-right">
+          See More
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCRIPT -->
+<script>
+  let cell_city = `        
+    <div class="column is-2">
+        <a href="/teachers?city={city}">
+        <div class="card" id="subject-card">
+
+          <div class="card-image" style="scale: 80%;font-size: 7rem;">
+            <figure class="image is-1by1 ">
+                <img src="{images}">
+            </figure>
+          </div>
+
+          <div class="card-header p-2" style="box-shadow:none">
+            <h2 class="title is-4 card-header-title">{title}</h2>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  `;
+  titles_icons = [
+    ["Kolkata", `/static/asset/golden-gate.png`],
+    ["Bangalore", `/static/asset/bangalore.png`],
+    ["Chennai", `/static/asset/chennai.png`],
+    ["Delhi", `/static/asset/delhi.png`],
+    ["Jaipur", `/static/asset/jaipur.png`],
+    ["Mumbai", `/static/asset/mumbai.png`],
+  ];
+  let cities = $(".cities");
+  for (let index = 0; index < titles_icons.length; index++) {
+    const element = titles_icons[index];
+    let edited_cell = cell_city.replace("{title}", element[0]);
+    edited_cell = edited_cell.replace("{images}", element[1]);
+    edited_cell = edited_cell.replace("{city}", element[0].toLowerCase());
+    cities.html(cities.html() + edited_cell);
+  }
+</script>
+
+<!-- SUBJECTS SECTION -->
+<section class="section">
+  <div class="container">
+    <div class="block mb-6">
+      <h1 class="title">What do you want to learn?</h1>
+    </div>
+
+    <!-- SUBJECT ROW -->
+    <div class="columns is-multiline subjects">
+      <!-- SUBJECTS CARDS WILL GO HERE WITH JAVASCRIPT -->
+    </div>
+
+    <!-- SEE MORE BUTTON FOR SUBJECTS -->
+    <div class="field">
+      <div class="control">
+        <button class="button is-link is-pulled-right">
+          See More
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCRIPT -->
+<script>
+  let cell_subject = `
+    <div class="column is-2" id="hover-shadow">
+        <a href="/teachers?subject={subject}"> 
+          <div class="card">
+            <div class="card-image" style="scale: 60%;font-size: 7rem;">
+              <figure class="image is-1by1 ">
+                  <img src="{images}">
+              </figure>
+            </div>
+            <div class="card-header p-1">
+              <h2 class="title is-5 card-header-title">{title}</h2>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  `;
+  titles_icons = [
+    ["Literature", "/static/asset/book.png", "literature"],
+    ["Computer", "/static/asset/computer.png", "computer"],
+    ["Law", "/static/asset/law.png", "law"],
+    ["Mathematics", "/static/asset/maths.png", "mathematics"],
+    ["Physics", "/static/asset/relativity.png", "physics"],
+    ["Chemistry", "/static/asset/chemistry.png", "chemistry"],
+    ["Biology", "/static/asset/genetics.png", "biology"],
+    ["Geography", "/static/asset/geography.png", "geography"],
+    ["History", "/static/asset/clock.png"],
+    ["Music", "/static/asset/musical-note.png"],
+    ["Nutrition", "/static/asset/balanced-diet.png"],
+    ["Drawing", "/static/asset/art.png", "drawing"],
+  ];
+  let subjects = $(".subjects");
+  for (let index = 0; index < titles_icons.length; index++) {
+    const element = titles_icons[index];
+    let edited_cell = cell_subject.replace("{title}", element[0]);
+    edited_cell = edited_cell.replace("{images}", element[1]);
+    edited_cell = edited_cell.replace("{subject}", element[2]);
+    subjects.html(subjects.html() + edited_cell);
+  }
+</script>
+
+<!-- TEACHERS SECTION -->
+
+<section class="section">
+  <div class="container">
+    <div class="block mb-6">
+      <h1 class="title">
+        Trending Teachers
+      </h1>
+    </div>
+    <div class="columns is-multiline">
+      <!-- REPEAT -->
+
+      {{ range .TrendingTeachers }}
+      <div class="column is-2">
+        <div class="card" style="height: 100%;">
+          <div class="card-image" style="font-size: 7rem;">
+            <figure class="image is-4by3 p-0 has-text-centered">
+              <span class="icon is-large">
+                <i class="fa-solid fa-user"></i>
+              </span>
+            </figure>
+          </div>
+          <div class="card-content p-4">
+            <div class="mb-4">
+              <a href="/user?uuid={{ .Uuid }}"></a>
+              <h2 class=" title is-6">{{ .FirstName }} {{.LastName}}</h2>
+            </div>
+
+            <nav class="level is-mobile" style="width: 75%;">
+
+              <a class="level-item" aria-label="reply">
+                <span class="icon is-small">
+                  <i class="fa-solid fa-star"></i>
+                </span>
+              </a>
+
+              <a class="level-item" aria-label="reply">
+                <span class="icon is-small">
+                  <i class="fa-solid fa-star"></i>
+                </span>
+              </a>
+
+              <a class="level-item" aria-label="reply">
+                <span class="icon is-small">
+                  <i class="fa-solid fa-star"></i>
+                </span>
+              </a>
+
+              <a class="level-item" aria-label="reply">
+                <span class="icon is-small">
+                  <i class="fa-solid fa-star-half-stroke"></i>
+                </span>
+              </a>
+
+              <a class="level-item" aria-label="reply">
+                <span class="icon is-small">
+                  <i class="fa-regular fa-star"></i>
+                </span>
+              </a>
+
+            </nav>
+          </div>
+
+
+          <div class="card-footer p-2">
+            <div class="is-size-7">{{ .AvgRating }} - {{ .RatingCount }}</div>
+          </div>
+        </div>
+      </div>
+
+      {{ end }}
+    </div>
+
+
+  </div>
+
+
+
+
+
+  {{ end }}

@@ -1,0 +1,48 @@
+{{ define "content" }}
+
+<section class="hero is-large is-warning">
+    <div class="hero-body">
+        <div class="container" style="color: white;">
+            <h1 class="title is-size-1">About Us</h1>
+            <p class="subtitle">Learn more about our company.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container mt-6">
+        <div class="columns">
+            <div class="column">
+                <h2 class="title">Our Story</h2>
+                <p>Connecting teachers and students through seamless communication, fostering learning, and empowering
+                    success in education</p>
+            </div>
+            <div class="column">
+                <h2 class="title">Our Mission</h2>
+                <p>Our mission is to connect students with teachers, building relationships to make a solid foundation
+                    built on trust and respect</p>
+            </div>
+            <div class="column">
+                <h2 class="title">Contact Us</h2>
+                <p>
+                    <span class="icon is-medium"><i class="fa-solid fa-envelope fa-2xl" style="cursor: pointer;"
+                            aria-hidden="true" onclick="sendEmail()"></i></span>
+
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>&copy; 2023 TeachWise. All rights reserved.</p>
+    </div>
+</footer>
+<script>
+    function sendEmail() {
+        window.location = "mailto:biswas08433@gmail.com";
+    }
+</script>
+
+{{ end }}

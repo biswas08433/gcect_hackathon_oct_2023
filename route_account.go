@@ -68,3 +68,36 @@ func SignupAccount(ctx *gin.Context) {
 	}
 	ctx.Redirect(http.StatusFound, "/login")
 }
+
+// GET /user/profile
+func Profile(ctx *gin.Context) {
+	if IsLoggedIn(ctx) {
+		response_data := gin.H{
+			"Title": "Profile",
+		}
+		_, user := GetUserIfLoggedIn(ctx)
+		response_data["User"] = user
+		GenerateHTML(ctx, response_data, "layout", "private_navbar", "profile")
+	} else {
+		ctx.Redirect(http.StatusFound, "/login")
+	}
+}
+
+// GET /user/edit-profile
+func EditProfile(ctx *gin.Context) {
+	if IsLoggedIn(ctx) {
+		response_data := gin.H{
+			"Title": "Edit Profile",
+		}
+		_, user := GetUserIfLoggedIn(ctx)
+		response_data["User"] = user
+		GenerateHTML(ctx, response_data, "layout", "private_navbar", "edit_profile")
+	} else {
+		ctx.Redirect(http.StatusFound, "/login")
+	}
+}
+
+// POST /user/edit-profile
+func UpdateProfile(ctx *gin.Context) {
+
+}

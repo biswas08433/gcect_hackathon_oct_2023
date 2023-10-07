@@ -1,0 +1,160 @@
+{{ define "content" }}
+<style>
+    body {
+        background-color: #21212118;
+    }
+</style>
+<div class="columns is-centered mt-6">
+    <div class="column is-5 px-6">
+        <form action="">
+            <!-- Subject -->
+            <div class="box">
+                <div class="field">
+                    <label class="label">Subject</label>
+                    <div class="control">
+                        <div class="select">
+                            <select>
+                                <option>Literature</option>
+                                <option>Computer</option>
+                                <option>Math</option>
+                                <option>Physics</option>
+                                <option>Chemistry</option>
+                                <option>Biology</option>
+                                <option>Geography</option>
+                                <option>Economics</option>
+                                <option>Music</option>
+                                <option>Nutrition</option>
+                                <option>Astronomy</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" class="button is-dark" value="ADD" />
+            </div>
+            <!-- Qualification -->
+            <div class="box">
+                <h1 class="has-text-centered is-size-3">
+                    Qualification
+                </h1>
+                <div class="field">
+                    <label class="label">Degree</label>
+                    <div class="control">
+                        <div class="select">
+                            <select>
+                                <option>Secondary</option>
+                                <option>Higher Secondary</option>
+                                <option>B. Sc</option>
+                                <option>M. Sc</option>
+                                <option>B. A.</option>
+                                <option>M. A.</option>
+                                <option>B. Com</option>
+                                <option>M. Com</option>
+                                <option>B. Tech</option>
+                                <option>M. Tech</option>
+                                <option>PhD</option>
+                                <option>M. Phil</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Subject</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="" name="subject" required />
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Year</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="" name="year" required />
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Institute Name</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="" name="institute-name" required />
+                    </div>
+                </div>
+                <input class="button is-dark" type="submit" value="ADD" />
+            </div>
+            <!-- Contact info -->
+            <div class="box">
+                <h1 class="has-text-centered is-size-3">Contact</h1>
+                <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control">
+                        <input class="input" type="email" placeholder="Email" name="email" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Phone</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Phone" name="phone" />
+                    </div>
+                </div>
+            </div>
+            <!-- Address -->
+            <div class="box">
+                <h1 class="has-text-centered is-size-3">Address</h1>
+                <div class="field">
+                    <label class="label">Address Line 1</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Address Line 1" name="address-line-1" required />
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Address Line 2</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Address Line 2" name="address-line-2" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Landmark</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="landmark" name="landmark" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">City</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="City" name="city" required />
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">State</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input" name="state" required />
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Pin</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input" name="pin" required />
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Country</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input" name="country" required />
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Longitude</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input" name="longitude" required />
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Latitude</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input" name="latitude" required />
+                    </div>
+                </div>
+            </div>
+            <!-- submit button -->
+            <input class="button is-dark" type="submit" value="Save" />
+        </form>
+    </div>
+</div>
+
+{{ end }}
